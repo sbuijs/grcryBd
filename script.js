@@ -9,6 +9,7 @@
 
         console.log(`Vandaag is het de ${dayToday}e van maand ${monthToday}`);
 
+
         const totalBudget = 350;
         console.log(`Het totaalbudget is €${totalBudget}`);
 
@@ -17,7 +18,7 @@
         let daysInMonth;
         //define how many days there are in a month based on the month of today
         switch (monthToday) {
-            case (monthToday = 2):
+            case (monthToday = 1):
                 daysInMonth = 28;
                 break;
 
@@ -29,7 +30,7 @@
                 break;
 
             case (monthToday = 0):
-            case (monthToday = 1):
+            case (monthToday = 2):
             case (monthToday = 3):
             case (monthToday = 3):
             case (monthToday = 5):
@@ -46,12 +47,12 @@
 
         // Calculate the amount of days untill the new budget
         function calculateDaysIntillNextBudget(dayToday) {
-            if (dayToday > 25) {
-                daysLeft = (30 - dayToday) + 25;
+            if (dayToday > 24) {
+                daysLeft = (daysInMonth - dayToday) + 24;
                 return daysLeft;
             }
-            else if (dayToday <= 25) {
-                daysLeft = 25 - dayToday;
+            else if (dayToday <= 24) {
+                daysLeft = 24 - dayToday;
                 return daysLeft;
             }
         }
@@ -83,7 +84,42 @@
         let budgetLeftTomorrow = calculateBudgetLeftTomorrow(dayBudget, daysLeft);
 
 
-        document.getElementById("budget-left").innerHTML += `${budgetLeft}`;
-        document.getElementById("budget-total").innerHTML += `€ ${totalBudget}`;
-        document.getElementById("budget-dayly").innerHTML += `€ ${dayBudget}`;
-        document.getElementById("budget-left-tomorrow").innerHTML += `€ ${budgetLeftTomorrow}`;
+        //Function that rounds numbers to 2 decimals after the dot
+        function roundedNumber(numberToRound){
+        var rounded = numberToRound.toFixed(2);
+        return rounded;
+        }
+
+
+        let roundedBudgetLeft = roundedNumber(budgetLeft);
+          let roundedTotalBudget = roundedNumber(totalBudget);
+            let roundedDayBudget = roundedNumber(dayBudget);
+              let roundedBudgetLeftTomorrow = roundedNumber(budgetLeftTomorrow);
+      
+
+
+        document.getElementById("budget-left").innerHTML += `${roundedBudgetLeft}`;
+        document.getElementById("budget-total").innerHTML += `€ ${roundedTotalBudget}`;
+        document.getElementById("budget-dayly").innerHTML += `€ ${roundedDayBudget}`;
+        document.getElementById("budget-left-tomorrow").innerHTML += `€ ${roundedBudgetLeftTomorrow}`;
+
+
+
+
+
+
+
+
+
+
+
+
+// var num = Number(0.005) // The Number() only visualizes the type and is not needed
+// var roundedString = num.toFixed(2);
+// var rounded = Number(roundedString); 
+
+// function roundItUp(number){
+//   let roundedNumber = number.toFixed(2);
+// }
+
+// let rounded = Number()
