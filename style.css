@@ -1,0 +1,63 @@
+* {
+  margin: 0;
+  padding: 0;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+}
+
+*,
+*::before,
+*::after {
+  -webkit-box-sizing: inherit;
+          box-sizing: inherit;
+}
+
+html {
+  font-size: 62.5%; 
+  /* 1rem = 10px, 10px/16px = 62,5% */
+              align-items: center;
+    font-family: 'Staatliches', cursive;
+    color: black; 
+}
+
+  
+body {
+    font-size: 2.4rem;
+    display: flex;
+    min-height: 100vh;
+    flex-direction: column;
+}
+
+        .main-content {
+            text-align: center;  
+            flex: 1;
+            /* center the content in the middle of the screen */
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        h1 {
+            font-size: 6rem;
+            margin-bottom: 1rem;
+        }
+
+        .subtext{
+        }
+        h5{
+            text-align: left;
+            padding: 20px;
+        }
+        h6{
+            font-family: 'Source Sans Pro', sans-serif;
+            font-weight: 100;
+            padding: 4px;
+        }
+        .bold{
+            font-family: 'Source Sans Pro', sans-serif;
+            font-weight: bold;
+        }
+
+        footer{
+            text-align: center;
+            margin-bottom: 20px;
+        }

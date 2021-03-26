@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Staatliches&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Source+Sans+Pro:wght@200;400&display=swap" rel="stylesheet">
+
+    <title>🥕 GRCRYBD</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            -webkit-box-sizing: border-box;
+            box-sizing: border-box;
+        }
+
+        *,
+        *::before,
+        *::after {
+            -webkit-box-sizing: inherit;
+            box-sizing: inherit;
+        }
+
+        html {
+            font-size: 62.5%;
+            /* 1rem = 10px, 10px/16px = 62,5% */
+            align-items: center;
+            font-family: 'Staatliches', cursive;
+            color: black;
+        }
+
+
+        body {
+            font-size: 2.4rem;
+            display: flex;
+            min-height: 100vh;
+            flex-direction: column;
+        }
+
+        .main-content {
+            padding-top: 100px;
+            text-align: center;
+            flex: 1;
+            /* center the content in the middle of the screen */
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        h1 {
+            font-size: 6rem;
+            margin-bottom: 1rem;
+        }
+
+        .subtext {}
+
+        h5 {
+            text-align: left;
+            padding: 20px;
+        }
+
+        h6 {
+            font-family: 'Source Sans Pro', sans-serif;
+            font-weight: 100;
+            padding: 4px;
+        }
+
+        .bold {
+            font-family: 'Source Sans Pro', sans-serif;
+            font-weight: bold;
+        }
+
+        footer {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+    </style>
+
+    <head>
+        <link rel="stylesheet" href="style.css">
+        <meta name="apple-mobile-web-app-capable" content="yes" />
+    </head>
+
+<body style="min-height: 100vh !important;">
+
+    <head>
+    </head>
+    <section class="main-content">
+
+        <div class="budget">
+            <h1>€<span id="budget-left"></span></h1>
+
+            <h6 class="subtext">Morgen nog <span id="budget-left-tomorrow" class="bold"></span></h6>
+
+        </div>
+    </section>
+
+
+    <!-- <script src="script.js"></script> -->
+    <script>
+        'use strict';
+
+        //get the month
+        let d = new Date();
+        let monthToday = d.getMonth();
+        //get the day number
+        let b = new Date();
+        let dayToday = b.getDate();
+
+        console.log(`Vandaag is het de ${dayToday}e van maand ${monthToday}`);
+
+        const totalBudget = 350;
+        console.log(`Het totaalbudget is €${totalBudget}`);
+
+        //caluculate the amount of days for the budget
+        //this goes from the 24th of the month till the next 24th of the month
+        let daysInMonth;
+        //define how many days there are in a month based on the month of today
+        switch (monthToday) {
+            case (monthToday = 2):
+                daysInMonth = 28;
+                break;
+
+            case (monthToday = 4):
+            case (monthToday = 6):
+            case (monthToday = 9):
+            case (monthToday = 11):
+                daysInMonth = 30;
+                break;
+
+            case (monthToday = 0):
+            case (monthToday = 1):
+            case (monthToday = 3):
+            case (monthToday = 3):
+            case (monthToday = 5):
+            case (monthToday = 7):
+            case (monthToday = 8):
+            case (monthToday = 10):
+                daysInMonth = 31;
+                break;
+        }
+
+        console.log(`Het aantal dagen in deze budget periode is ${daysInMonth}`);
+
+        let daysLeft;
+
+        // Calculate the amount of days untill the new budget
+        function calculateDaysIntillNextBudget(dayToday) {
+            if (dayToday > 24) {
+                daysLeft = (30 - dayToday) + 24;
+                return daysLeft;
+            }
+            else if (dayToday <= 24) {
+                daysLeft = 24 - dayToday;
+                return daysLeft;
+            }
+        }
+        daysLeft = calculateDaysIntillNextBudget(dayToday);
+        console.log(`We moeten deze periode nog ${daysLeft} dagen doen met het budget`);
+
+
+
+        // Calculate the budget per day based on the amount of days in te week
+        function calculateBudgetPerDay(totalBudget, daysInMonth) {
+            let dayBudget = totalBudget / daysInMonth;
+            return dayBudget;
+        }
+        let dayBudget = calculateBudgetPerDay(totalBudget, daysInMonth);
+        console.log(`We kunnen per dag ${dayBudget} uitgeven`);
+
+
+        function calculateBudgetLeft(dayBudget, daysLeft) {
+            let budgetLeft = dayBudget * daysLeft;
+            return budgetLeft;
+        }
+        let budgetLeft = calculateBudgetLeft(dayBudget, daysLeft);
+
+
+        function calculateBudgetLeftTomorrow(dayBudget, daysLeft) {
+            let budgetLeftTomorrow = (dayBudget * daysLeft) - dayBudget;
+            return budgetLeftTomorrow;
+        }
+        let budgetLeftTomorrow = calculateBudgetLeftTomorrow(dayBudget, daysLeft);
+
+        document.getElementById("budget-left-tomorrow").innerHTML += `€ ${budgetLeftTomorrow}`;
+        //document.getElementById("budget-left").innerHTML += `${budgetLeft}`;
+        document.getElementById("budget-total").innerHTML += `€ ${totalBudget}`;
+        document.getElementById("budget-dayly").innerHTML += `€ ${dayBudget}`;
+
+        function newMonthNewBudget(daysLeft) {
+            if (daysLeft == 0) {
+                document.getElementById("budget-left").innerHTML += `doei`;
+            }
+            else {
+                document.getElementById("budget-left").innerHTML += `hallo`;
+            }
+        }
+
+
+
+    </script>
+</body>
+
+
+</html>
