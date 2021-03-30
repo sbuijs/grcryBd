@@ -5,35 +5,24 @@ let monthToday = today.getMonth();
 let dayToday = today.getDate();
 let yearToday = today.getFullYear();
 
-//check if the correct dates are loaded
-console.log(`Vandaag is het de ${dayToday}e van maand ${monthToday} en jaar ${yearToday}`);
+
 //Add the date to the screen in top right corner
 document.getElementById("date-today").innerHTML += `${dayToday} / ${monthToday} / ${yearToday}`;
 
 // Get the last day of the last month
 var lastDayOfLastMonth = new Date(today.getFullYear(), today.getMonth(), 0);
 let amountOfDaysInLastMonth = lastDayOfLastMonth.getDate();
-console.log(`Het aantal dagen in deze budget periode is ${amountOfDaysInLastMonth}`);
 
 //Amount of days in current
 var lastDayOfThisMonth = new Date(today.getFullYear(), today.getMonth() + 1, 0);
 let amountOfDaysInThisMonth = lastDayOfThisMonth.getDate();
-console.log(`Amount of days this month ${amountOfDaysInThisMonth}`);
-
-
-
 
 //Define the budget
 let totalBudget = 350;
-console.log(`Het totaalbudget is €${totalBudget}`);
-//Possibility to get the total budget through the prompt
-// let totalBudget = prompt(`Wat is het totaalbudget per maand ? `);
-
 
 
 /* ------- Calculate the amount of days left untill the new budget ------- */
 let daysLeft;
-
 
 function calculateDaysIntillNextBudget(dayToday) {
     if (dayToday => 25) {
@@ -73,16 +62,7 @@ dayBudget = calculateBudgetPerDay(totalBudget, amountOfDaysInThisMonth);
 
 
 
-
-
-
-
-
-
-
-
-
-
+/* ------- Calculate the budget that is left -------------------------------------------------------- */
 
 function calculateBudgetLeft(dayBudget, daysLeft) {
     let budgetLeft = dayBudget * daysLeft;
@@ -91,6 +71,7 @@ function calculateBudgetLeft(dayBudget, daysLeft) {
 let budgetLeft = calculateBudgetLeft(dayBudget, daysLeft);
 
 
+/* ------- Calculate the budget that is left for tomorrow -------------------------------------------------------- */
 function calculateBudgetLeftTomorrow(dayBudget, daysLeft) {
     let budgetLeftTomorrow = (dayBudget * daysLeft) - dayBudget;
     return budgetLeftTomorrow;
@@ -98,12 +79,11 @@ function calculateBudgetLeftTomorrow(dayBudget, daysLeft) {
 let budgetLeftTomorrow = calculateBudgetLeftTomorrow(dayBudget, daysLeft);
 
 
-//Function that rounds numbers to 2 decimals after the dot
+/* ------- Round the numbers to 2 decimals behind the dot -------------------------------------------------------- */
 function roundedNumber(numberToRound) {
     var rounded = numberToRound.toFixed(2);
     return rounded;
 }
-
 
 let roundedBudgetLeft = roundedNumber(budgetLeft);
 let roundedTotalBudget = roundedNumber(totalBudget);
