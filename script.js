@@ -1,107 +1,75 @@
-  'use strict';
+'use strict';
 
-        //get the month
-        let d = new Date();
-        let monthToday = d.getMonth();
-        //get the day number
-        let b = new Date();
-        let dayToday = b.getDate();
+let today = new Date();
+let monthToday = today.getMonth();
+let dayToday = today.getDate();
+let yearToday = today.getFullYear();
 
-        console.log(`Vandaag is het de ${dayToday}e van maand ${monthToday}`);
+//check if the correct dates are loaded
+console.log(`Vandaag is het de ${dayToday}e van maand ${monthToday} en jaar ${yearToday}`);
+//Add the date to the screen in top right corner
+document.getElementById("date-today").innerHTML += `${dayToday} / ${monthToday} / ${yearToday}`;
+
+// Get the last day of the last month
+var lastDayOfLastMonth = new Date(today.getFullYear(), today.getMonth(), 0);
+let amountOfDaysInLastMonth = lastDayOfLastMonth.getDate();
+console.log(`Het aantal dagen in deze budget periode is ${amountOfDaysInLastMonth}`);
+
+//Amount of days in current
+var lastDayOfThisMonth = new Date(today.getFullYear(), today.getMonth() + 1, 0);
+let amountOfDaysInThisMonth = lastDayOfThisMonth.getDate();
+console.log(`Amount of days this month ${amountOfDaysInThisMonth}`);
 
 
-        const totalBudget = 350;
-        console.log(`Het totaalbudget is €${totalBudget}`);
 
-        //caluculate the amount of days for the budget
-        //this goes from the 24th of the month till the next 24th of the month
-        let daysInMonth;
-        //define how many days there are in a month based on the month of today
-        switch (monthToday) {
-            case (monthToday = 1):
-                daysInMonth = 28;
-                break;
 
-            case (monthToday = 4):
-            case (monthToday = 6):
-            case (monthToday = 9):
-            case (monthToday = 11):
-                daysInMonth = 30;
-                break;
+//Define the budget
+let totalBudget = 350;
+console.log(`Het totaalbudget is €${totalBudget}`);
+//Possibility to get the total budget through the prompt
+// let totalBudget = prompt(`Wat is het totaalbudget per maand ? `);
 
-            case (monthToday = 0):
-            case (monthToday = 2):
-            case (monthToday = 3):
-            case (monthToday = 3):
-            case (monthToday = 5):
-            case (monthToday = 7):
-            case (monthToday = 8):
-            case (monthToday = 10):
-                daysInMonth = 31;
-                break;
-        }
 
-        console.log(`Het aantal dagen in deze budget periode is ${daysInMonth}`);
 
-        let daysLeft;
+/* ------- Calculate the amount of days left untill the new budget ------- */
+let daysLeft;
 
-        // Calculate the amount of days untill the new budget
-        function calculateDaysIntillNextBudget(dayToday) {
-            if (dayToday > 24) {
-                daysLeft = (daysInMonth - dayToday) + 24;
-                return daysLeft;
-            }
-            else if (dayToday <= 24) {
-                daysLeft = 24 - dayToday;
-                return daysLeft;
-            }
-        }
-        daysLeft = calculateDaysIntillNextBudget(dayToday);
+
+function calculateDaysIntillNextBudget(dayToday) {
+    if (dayToday => 25) {
+        daysLeft = (amountOfDaysInThisMonth - dayToday) + 24;
         console.log(`We moeten deze periode nog ${daysLeft} dagen doen met het budget`);
+        return daysLeft;
+
+    }
+    else if (dayToday <= 24) {
+        daysLeft = 24 - dayToday;
+        console.log(`We moeten deze periode nog ${daysLeft} dagen doen met het budget`);
+        return daysLeft;
+    }
+}
+daysLeft = calculateDaysIntillNextBudget(dayToday);
 
 
+/* ------- Calculate the budget per day based on the amount of days in te week -------------------------------------------------------- */
 
-        // Calculate the budget per day based on the amount of days in te week
-        function calculateBudgetPerDay(totalBudget, daysInMonth) {
-            let dayBudget = totalBudget / daysInMonth;
-            return dayBudget;
-        }
-        let dayBudget = calculateBudgetPerDay(totalBudget, daysInMonth);
+let dayBudget;
+
+function calculateBudgetPerDay(totalBudget, amountOfDaysInThisMonth) {
+    if (dayToday => 25) {
+        dayBudget = totalBudget / amountOfDaysInThisMonth;
+        console.log(`CHECK daybudget ${dayBudget}`);
         console.log(`We kunnen per dag ${dayBudget} uitgeven`);
+        return dayBudget;
 
-
-        function calculateBudgetLeft(dayBudget, daysLeft) {
-            let budgetLeft = dayBudget * daysLeft;
-            return budgetLeft;
-        }
-        let budgetLeft = calculateBudgetLeft(dayBudget, daysLeft);
-
-
-        function calculateBudgetLeftTomorrow(dayBudget, daysLeft) {
-            let budgetLeftTomorrow = (dayBudget * daysLeft) - dayBudget;
-            return budgetLeftTomorrow;
-        }
-        let budgetLeftTomorrow = calculateBudgetLeftTomorrow(dayBudget, daysLeft);
-
-
-        //Function that rounds numbers to 2 decimals after the dot
-        function roundedNumber(numberToRound){
-        var rounded = numberToRound.toFixed(2);
-        return rounded;
-        }
-
-
-        let roundedBudgetLeft = roundedNumber(budgetLeft);
-          let roundedTotalBudget = roundedNumber(totalBudget);
-            let roundedDayBudget = roundedNumber(dayBudget);
-              let roundedBudgetLeftTomorrow = roundedNumber(budgetLeftTomorrow);
-      
-
-
-        document.getElementById("budget-left").innerHTML += `${roundedBudgetLeft}`;
-        document.getElementById("budget-total").innerHTML += `€ ${roundedTotalBudget}`;
-        document.getElementById("budget-dayly").innerHTML += `€ ${roundedDayBudget}`;
-        document.getElementById("budget-left-tomorrow").innerHTML += `€ ${roundedBudgetLeftTomorrow}`;
+    } else if (dayToday <= 24) {
+        dayBudget = totalBudget / amountOfDaysInLastMonth;
+        console.log(`CHECK daybudget ${dayBudget}`);
+        console.log(`We kunnen per dag ${dayBudget} uitgeven`);
+        return dayBudget;
+    }
+}
+dayBudget = calculateBudgetPerDay(totalBudget, amountOfDaysInThisMonth);
 
 
 
@@ -114,12 +82,45 @@
 
 
 
-// var num = Number(0.005) // The Number() only visualizes the type and is not needed
-// var roundedString = num.toFixed(2);
-// var rounded = Number(roundedString); 
 
-// function roundItUp(number){
-//   let roundedNumber = number.toFixed(2);
-// }
 
-// let rounded = Number()
+function calculateBudgetLeft(dayBudget, daysLeft) {
+    let budgetLeft = dayBudget * daysLeft;
+    return budgetLeft;
+}
+let budgetLeft = calculateBudgetLeft(dayBudget, daysLeft);
+
+
+function calculateBudgetLeftTomorrow(dayBudget, daysLeft) {
+    let budgetLeftTomorrow = (dayBudget * daysLeft) - dayBudget;
+    return budgetLeftTomorrow;
+}
+let budgetLeftTomorrow = calculateBudgetLeftTomorrow(dayBudget, daysLeft);
+
+
+//Function that rounds numbers to 2 decimals after the dot
+function roundedNumber(numberToRound) {
+    var rounded = numberToRound.toFixed(2);
+    return rounded;
+}
+
+
+let roundedBudgetLeft = roundedNumber(budgetLeft);
+let roundedTotalBudget = roundedNumber(totalBudget);
+let roundedDayBudget = roundedNumber(dayBudget);
+let roundedBudgetLeftTomorrow = roundedNumber(budgetLeftTomorrow);
+
+
+document.getElementById("budget-left").innerHTML += `${roundedBudgetLeft}`;
+document.getElementById("budget-total").innerHTML += `€ ${roundedTotalBudget}`;
+document.getElementById("budget-dayly").innerHTML += `€ ${roundedDayBudget}`;
+document.getElementById("budget-left-tomorrow").innerHTML += `€ ${roundedBudgetLeftTomorrow}`;
+document.getElementById("days-left").innerHTML += `${daysLeft}`;
+
+
+
+
+
+
+
+

@@ -43,9 +43,15 @@ body {
 
         .subtext{
         }
+        p{
+            margin-bottom: 10px;
+        }
         h5{
             text-align: left;
             padding: 20px;
+        }
+        #date-today{
+            float: right;
         }
         h6{
             font-family: 'Source Sans Pro', sans-serif;
