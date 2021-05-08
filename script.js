@@ -4,18 +4,26 @@ let today = new Date();
 let monthToday = today.getMonth();
 let dayToday = today.getDate();
 let yearToday = today.getFullYear();
+//console.log(monthToday, dayToday, yearToday) >> klopt
 
 
 //Add the date to the screen in top right corner
 document.getElementById("date-today").innerHTML += `${dayToday} / ${monthToday} / ${yearToday}`;
 
+
 // Get the last day of the last month
-var lastDayOfLastMonth = new Date(today.getFullYear(), today.getMonth(), 0);
+let lastDayOfLastMonth = new Date(today.getFullYear(), today.getMonth(), 0);
 let amountOfDaysInLastMonth = lastDayOfLastMonth.getDate();
+// console.log(lastDayOfLastMonth); >> klopt
+// console.log(amountOfDaysInLastMonth); >> klopt
+
 
 //Amount of days in current
-var lastDayOfThisMonth = new Date(today.getFullYear(), today.getMonth() + 1, 0);
+let lastDayOfThisMonth = new Date(today.getFullYear(), today.getMonth() + 1, 0);
 let amountOfDaysInThisMonth = lastDayOfThisMonth.getDate();
+// console.log(lastDayOfThisMonth);  >> klopt
+// console.log(amountOfDaysInThisMonth);  >> klopt
+
 
 //Define the budget
 let totalBudget = 350;
@@ -25,9 +33,9 @@ let totalBudget = 350;
 let daysLeft;
 
 function calculateDaysIntillNextBudget(dayToday) {
-    if (dayToday => 25) {
+    if (dayToday >= 25) {
         daysLeft = (amountOfDaysInThisMonth - dayToday) + 24;
-        console.log(`We moeten deze periode nog ${daysLeft} dagen doen met het budget`);
+        console.log(`We moeten deze periode nog ${daysLeft} dagen doen met het budgett`);
         return daysLeft;
 
     }
@@ -91,13 +99,43 @@ let roundedDayBudget = roundedNumber(dayBudget);
 let roundedBudgetLeftTomorrow = roundedNumber(budgetLeftTomorrow);
 
 
+let budgetover = roundedBudgetLeft;
+
+for (let i = dayToday + 1; i <= 23; i = i + 1) {
+    budgetover = budgetover - dayBudget;
+    let roundedbudgetover = roundedNumber(budgetover);
+    console.log(`Budget op de ${i}e is €${roundedbudgetover}`);
+}
+
+
+
+// -----------------------Create a line of text for every day of the month with the amount of money -------------------------------------------------------------------------------------------------
+
+// info: https://www.javascripttutorial.net/javascript-dom/javascript-createelement/
+let testDiv = document.createElement('div');
+testDiv.id = 'allDayList';
+testDiv.innerHTML = `Budget op de ..e is €${roundedBudgetLeft}`;
+document.body.appendChild(testDiv);
+
+
+
+let li = document.createElement('li');
+li.textContent = 'lijstmetmunnies';
+listOfMunny.appendChild(li);
+
+li = document.createElement('li');
+li.textContent = 'About us';
+
+// select the ul menu element
+const listOfMunny = document.querySelector('#listOfMunny');
+listOfMunny.appendChild(li);
+
+
 document.getElementById("budget-left").innerHTML += `${roundedBudgetLeft}`;
 document.getElementById("budget-total").innerHTML += `€ ${roundedTotalBudget}`;
 document.getElementById("budget-dayly").innerHTML += `€ ${roundedDayBudget}`;
 document.getElementById("budget-left-tomorrow").innerHTML += `€ ${roundedBudgetLeftTomorrow}`;
 document.getElementById("days-left").innerHTML += `${daysLeft}`;
-
-
 
 
 

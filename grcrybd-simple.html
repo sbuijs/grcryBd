@@ -121,13 +121,12 @@
         //document.getElementById("date-today").innerHTML += `${dayToday} / ${monthToday} / ${yearToday}`;
 
         // Get the last day of the last month
-        var lastDayOfLastMonth = new Date(today.getFullYear(), today.getMonth(), 0);
+        let lastDayOfLastMonth = new Date(today.getFullYear(), today.getMonth(), 0);
         let amountOfDaysInLastMonth = lastDayOfLastMonth.getDate();
 
         //Amount of days in current
         var lastDayOfThisMonth = new Date(today.getFullYear(), today.getMonth() + 1, 0);
         let amountOfDaysInThisMonth = lastDayOfThisMonth.getDate();
-
         //Define the budget
         let totalBudget = 350;
 
@@ -136,9 +135,9 @@
         let daysLeft;
 
         function calculateDaysIntillNextBudget(dayToday) {
-            if (dayToday => 25) {
+            if (dayToday >= 25) {
                 daysLeft = (amountOfDaysInThisMonth - dayToday) + 24;
-                console.log(`We moeten deze periode nog ${daysLeft} dagen doen met het budget`);
+                console.log(`We moeten deze periode nog ${daysLeft} dagen doen met het budgett`);
                 return daysLeft;
 
             }
@@ -156,7 +155,7 @@
         let dayBudget;
 
         function calculateBudgetPerDay(totalBudget, amountOfDaysInThisMonth) {
-            if (dayToday => 25) {
+            if (dayToday >= 25) {
                 dayBudget = totalBudget / amountOfDaysInThisMonth;
                 console.log(`CHECK daybudget ${dayBudget}`);
                 console.log(`We kunnen per dag ${dayBudget} uitgeven`);

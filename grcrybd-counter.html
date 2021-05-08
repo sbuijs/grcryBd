@@ -24,26 +24,17 @@
     <section class="main-content">
 
         <div class="budget">
-            <p>Nog <span id="days-left"></span> dagen te gaan!</p>
-            <h1>€<span id="budget-left"></span></h1>
 
-            <h6 class="subtext">Het resterende budget voor vandaag t/m de 24e.</h6>
-            <h6 class="subtext">Morgen nog <span id="budget-left-tomorrow" class="bold"></span></h6>
-
-            <a id="cta-homepage" class="btn btn-primary" href="grcrybd-lijst.html" role="button">Bekijk hier de
-                volledige lijst</a>
+            <h1>€<span id="budget-left" class="animate-timer">124</span></h1>
+            <span class="pie-center-number animate-timer">{{block.chartMainPercentage}}</span>%
         </div>
     </section>
 
     <footer>
-        <h6 class="pink">Het budget voor boodschappen is <span id="budget-total" class="bold"></span> per maand.</h6>
-        <h6>Dat is voor deze maand <span id="budget-dayly" class="bold"></span> per dag.</h6>
+
     </footer>
 
-
-
-    <script src="script.js"></script>
-    <script src="testscript.js"></script>
+    <script src="counter-script.js"></script>
 
 </body>
 
