@@ -106,7 +106,12 @@ document.getElementById("days-left").innerHTML += `${daysLeft}`;
 
 
 
-
-
-
+//show an emoji on the first day of the new budget
+const newMonth = document.querySelector('.new-month');
+function showNewMonthMessage() {
+    if (dayToday === startBudgetDay) {
+        newMonth.classList.remove('hidden');
+    }
+}
+window.onload = showNewMonthMessage();
 

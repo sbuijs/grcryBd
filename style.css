@@ -74,7 +74,7 @@ body {
 .show-modal {
   font-size: 1.5rem;
   padding: 1.75rem 2.5rem;
-  margin: 10rem 2rem;
+  margin: 5rem 2rem;
   border: none;
   background-color: orange;
   color: #444;
@@ -165,4 +165,8 @@ width: 80%;
   border-radius: 10rem;
   cursor: pointer;
   color: #444;
+}
+
+.new-month-budget{
+  font-size: 4rem;
 }
