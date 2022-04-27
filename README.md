@@ -4,7 +4,7 @@
 <h1 align="left">grcryBd
 </h1>
   <p align="left">
-Budget tracker. Based on monthly budget keeps track of the amount of money should be still on the bank account. <br/>
+Budget tracker. Based on monthly budget, and the starting date the 25th of the month, it keeps track of the amount of money should be still on the bank account. <br/>
   This way you can keep track if you are in line with spending.
        <a href="https://sbuijs.github.io/grcryBd/">View Demo</a>
   </p>
