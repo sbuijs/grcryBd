@@ -28,7 +28,7 @@
             <div class="new-month hidden">
                 🥳
             </div>
-
+            <p><span id="days-left"></span> days to go!</p>
             <h6 class="subtext">Today you can spend untill this amount:</h6>
 
             <h2>€<span id="budget-left"></span></h2>
@@ -37,15 +37,18 @@
 
 
 
-            <button class="show-modal">Calculate how much you can spend today</button>
+            <button class="show-modal">Calculate today's budget</button>
 
             <div class="modal hidden">
                 <button class="close-modal">&times;</button>
                 <div class="modal-content">
                     <div class="input-money">
                         <h3 class="input-money__title">How much is in the bank account?</h3>
-                        <input type="number" id="calculate-input" autofocus>
+                        <span class="input-symbol-euro">
+                            <input type="number" id="calculate-input" autofocus>
+                        </span>
                         <button class="btn calculate-button">Calculate it!</button>
+                        <p class="input-alert hidden">Fill out a numer</p>
                     </div>
                     <div class="result hidden">
                         <h6>Today you can spend..</h6>
@@ -65,7 +68,8 @@
     </section>
 
     <footer>
-        <h6 class="subtext"><strong><span id="days-left"></span> days</strong> till new budget.</h6>
+        <!-- <h6 class="subtext"><strong><span id="days-left">
+                </span> days</strong> till new budget.</h6> -->
         <h6>Day budget: <span id="budget-dayly" class="bold"></span></h6>
         <h6 class="pink">Montly budget: <span id="budget-total" class="bold"></span></h6>
     </footer>
